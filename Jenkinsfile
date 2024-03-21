@@ -15,28 +15,27 @@ pipeline {
                 git branch: "${branch}", credentialsId: "${credentialsId}", url: "${scmUrl}"
             }
         }
-       stage('install') {
+       stage('install modules ') {
             steps {
                 sh 'npm install '
-                echo 'sedang di install..'
+                echo 'module sedang di install..'
+            }
+        }
+        stage('tes instalt') {
+            steps {
+                echo 'test function'
             }
         }
 
         stage('build') {
             steps {
                 sh 'npm run build'
-                echo 'sedang di build..'
-            }
-        }
-        stage('start') {
-            steps {
-                sh "npm run start"
-                echo 'start ...'
+                echo 'aplikasi sedang di build..'
             }
         }
         stage('deploy') {
             steps {
-                echo 'build dan start berhasil.. proses deploy'
+                echo 'test berhasil.. proses deploy'
             }
         }
     }
