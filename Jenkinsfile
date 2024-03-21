@@ -28,14 +28,15 @@ pipeline {
                 echo 'sedang di build..'
             }
         }
-        stage('test') {
+        stage('start') {
             steps {
-                echo 'test function'
+                sh "npm run start"
+                echo 'start ...'
             }
         }
         stage('deploy') {
             steps {
-                echo 'test berhasil.. proses deploy'
+                echo 'build dan start berhasil.. proses deploy'
             }
         }
     }
