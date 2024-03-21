@@ -1,17 +1,32 @@
-/* Requires Docker Pipeline plugin */
 pipeline {
-    agent {
-        docker {
-            image 'maven:3.9.0-eclipse-temurin-11'
+   agent any
+   environment {
+        branch = "master",
+        scmURL = "https://github.com/erlanggaht/test_jenkins.git"
+   }
+
+   stages {
+    stage ('build') {
+        steps {
+            echo "sedang di build.."
+            sh "npm run build"
         }
     }
-    stages {
-        stage('build') {
-            steps {
-                script {
-                    sh 'mvn --version'
-                }
-            }
+    stage ("test") {
+        echo "test function"
+    }
+    stage("deploy") {
+        steps {
+            echo "test berhasil.. proses deploy"
+
         }
     }
+
+   post {
+    failed {
+        mail to: "erlanggahidayat.md@gmail.com", subject: "Pipeline Failed", body: "${env.BUILD_URL}"
+    }
+   }
+   }
+
 }
