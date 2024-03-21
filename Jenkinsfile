@@ -15,6 +15,13 @@ pipeline {
                 git branch: "${branch}", credentialsId: "${credentialsId}", url: "${scmUrl}"
             }
         }
+       stage('build') {
+            steps {
+                sh 'npm install '
+                echo 'sedang di install..'
+            }
+        }
+
         stage('build') {
             steps {
                 sh 'npm run build'
