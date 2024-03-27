@@ -10,18 +10,14 @@ pipeline {
     }
 
     stages {
-        stage("using credential github") {
+        stage("Tahap Install") {
             steps {
                 git branch: "${branch}", credentialsId: "${credentialsId}", url: "${scmUrl}"
-            }
-        }
-       stage('install modules ') {
-            steps {
                 sh 'npm install '
                 echo 'module sedang di install..'
             }
         }
-        stage('tes instalt') {
+        stage('Tahap Test') {
             steps {
                 echo 'test function'
             }
