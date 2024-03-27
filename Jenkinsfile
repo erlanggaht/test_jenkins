@@ -10,11 +10,12 @@ pipeline {
     }
 
     stages {
-        stage("Tahap Install") {
+        stage("Tahap Build") {
             steps {
                 git branch: "${branch}", credentialsId: "${credentialsId}", url: "${scmUrl}"
                 sh 'npm install '
                 echo 'module sedang di install..'
+                sh 'npm run build'
             }
         }
         stage('Tahap Test') {
@@ -22,16 +23,9 @@ pipeline {
                 echo 'test function'
             }
         }
-
-        stage('build') {
+        stage('Tahap Deploy') {
             steps {
-                sh 'npm run build'
-                echo 'aplikasi sedang di build..'
-            }
-        }
-        stage('deploy') {
-            steps {
-                echo 'test berhasil.. proses deploy'
+                echo 'Sedang deploy..'
             }
         }
     }
