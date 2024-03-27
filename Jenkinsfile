@@ -14,7 +14,7 @@ pipeline {
             steps {
                 git branch: "${branch}", credentialsId: "${credentialsId}", url: "${scmUrl}"
                 sh 'npm install '
-                echo 'module sedang di install..'
+                echo 'module sedang di installl..'
                 sh 'npm run build'
             }
         }
